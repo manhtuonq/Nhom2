@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password - FinTech Plus</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .carousel-dot {
+            transition: all 0.3s ease;
+        }
+        
+        .carousel-dot.active {
+            width: 2rem;
+            background-color: #1e3a8a;
+        }
+        
+        .social-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="flex min-h-screen">
+        <!-- Left Section - Form -->
+        <div class="w-full lg:w-1/2 flex flex-col p-8 lg:p-16">
+            <!-- Logo -->
+            <div class="mb-12">
+                <div class="flex items-center space-x-2">
+                    <div class="w-12 h-12 bg-blue-800 rounded-xl flex items-center justify-center relative">
+                        <span class="text-white font-bold text-2xl">FP</span>
+                        <span class="absolute -bottom-1 -right-1 bg-green-500 text-white text-xs font-bold w-5 h-5 rounded flex items-center justify-center">+</span>
+                    </div>
+                    <span class="text-2xl font-bold text-blue-900">FinTech Plus</span>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="flex-1 flex flex-col justify-center max-w-md">
+                <!-- Back to login -->
+                <a href="#" class="flex items-center text-gray-600 hover:text-blue-800 mb-8 transition-colors">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    <span class="text-sm font-medium">Back to login</span>
+                </a>
+
+                <!-- Title -->
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">Forgot your password?</h1>
+                <p class="text-gray-600 mb-8">Don't worry, happens to all of us. Enter your email below to recover your password</p>
+
+                <!-- Form -->
+                <form id="resetForm" class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                        <input 
+                            type="email" 
+                            id="emailInput"
+                            placeholder="Enter your email address" 
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all"
+                            required
+                        >
+                    </div>
+
+                    <button 
+                        type="submit" 
+                        class="w-full bg-gray-400 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-colors duration-300"
+                    >
+                        Submit
+                    </button>
+                </form>
+
+                <!-- Divider -->
+                <div class="flex items-center my-8">
+                    <div class="flex-1 border-t border-gray-300"></div>
+                    <span class="px-4 text-sm text-gray-500">Or login with</span>
+                    <div class="flex-1 border-t border-gray-300"></div>
+                </div>
+
+                <!-- Social Login -->
+                <div class="grid grid-cols-2 gap-4">
+                    <button class="social-btn flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg hover:border-blue-600">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24">
+                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                        </svg>
+                    </button>
+                    <button class="social-btn flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg hover:border-blue-600">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24">
+                            <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" fill="#000"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Section - Image Carousel -->
+        <div class="hidden lg:flex w-1/2 bg-gradient-to-br from-blue-900 to-blue-700 rounded-3xl m-8 p-12 flex-col items-center justify-center relative overflow-hidden">
+            <!-- Decorative elements -->
+            <div class="absolute top-0 left-0 w-full h-full opacity-10">
+                <div class="absolute top-10 left-10 w-32 h-32 bg-white rounded-full"></div>
+                <div class="absolute bottom-20 right-20 w-24 h-24 bg-green-400 rounded-full"></div>
+            </div>
+            
+            <!-- Image carousel -->
+            <div class="relative z-10 w-full h-full flex items-center justify-center">
+                <div class="carousel-container relative w-full max-w-lg h-96 rounded-3xl overflow-hidden shadow-2xl">
+                    <img id="carouselImage" src="https://picsum.photos/600/400?random=1" alt="Financial security" class="w-full h-full object-cover transition-opacity duration-500">
+                </div>
+            </div>
+
+            <!-- Carousel dots -->
+            <div class="absolute bottom-12 flex space-x-2 z-20">
+                <div class="carousel-dot active w-8 h-2 bg-white rounded-full cursor-pointer" data-index="0"></div>
+                <div class="carousel-dot w-2 h-2 bg-white rounded-full opacity-50 cursor-pointer" data-index="1"></div>
+                <div class="carousel-dot w-2 h-2 bg-white rounded-full opacity-50 cursor-pointer" data-index="2"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-2xl p-8 max-w-md mx-4 text-center transform transition-all">
+            <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Check your email!</h3>
+            <p class="text-gray-600 mb-6">We've sent a password recovery link to your email address.</p>
+            <button onclick="closeModal()" class="bg-blue-800 hover:bg-blue-900 text-white font-semibold px-6 py-3 rounded-lg transition-colors">
+                Got it
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('resetForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('emailInput').value;
+            
+            // Simulate API call
+            setTimeout(() => {
+                document.getElementById('successModal').classList.remove('hidden');
+            }, 500);
+        });
+
+        function closeModal() {
+            document.getElementById('successModal').classList.add('hidden');
+            document.getElementById('emailInput').value = '';
+        }
+
+        // Carousel with images
+        let currentDot = 0;
+        const dots = document.querySelectorAll('.carousel-dot');
+        const carouselImage = document.getElementById('carouselImage');
+        
+        // Array of images from Unsplash API (finance/business themed)
+        const images = [
+            'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+            'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
+            'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=400&fit=crop'
+        ];
+        
+        // Auto-rotate carousel
+        setInterval(() => {
+            dots[currentDot].classList.remove('active');
+            dots[currentDot].classList.add('opacity-50');
+            dots[currentDot].style.width = '0.5rem';
+            
+            currentDot = (currentDot + 1) % dots.length;
+            
+            dots[currentDot].classList.add('active');
+            dots[currentDot].classList.remove('opacity-50');
+            dots[currentDot].style.width = '2rem';
+            
+            // Fade effect
+            carouselImage.style.opacity = '0';
+            setTimeout(() => {
+                carouselImage.src = images[currentDot];
+                carouselImage.style.opacity = '1';
+            }, 250);
+        }, 4000);
+        
+        // Manual dot click
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                dots[currentDot].classList.remove('active');
+                dots[currentDot].classList.add('opacity-50');
+                dots[currentDot].style.width = '0.5rem';
+                
+                currentDot = index;
+                
+                dots[currentDot].classList.add('active');
+                dots[currentDot].classList.remove('opacity-50');
+                dots[currentDot].style.width = '2rem';
+                
+                carouselImage.style.opacity = '0';
+                setTimeout(() => {
+                    carouselImage.src = images[currentDot];
+                    carouselImage.style.opacity = '1';
+                }, 250);
+            });
+        });
+    </script>
+</body>
+</html>
