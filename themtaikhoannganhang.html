@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thêm Tài khoản / Ngân hàng - FinTech Plus</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .sidebar-item {
+            transition: all 0.2s ease;
+        }
+        
+        .sidebar-item:hover {
+            background-color: #f3f4f6;
+            border-left: 3px solid #0D5A8F;
+        }
+        
+        .sidebar-item.active {
+            background-color: #e5e7eb;
+            border-left: 3px solid #0D5A8F;
+            font-weight: 600;
+            color: #0D5A8F;
+        }
+        
+        .icon-btn {
+            transition: all 0.2s ease;
+        }
+        
+        .icon-btn:hover {
+            background-color: #f3f4f6;
+            transform: scale(1.05);
+        }
+        
+        .bank-logo {
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .bank-logo-inner {
+            transition: transform 0.3s ease;
+        }
+        
+        .bank-logo:hover .bank-logo-inner {
+            transform: translateY(-8px);
+        }
+        
+        .bank-logo.selected .bank-logo-inner {
+            box-shadow: 0 0 0 4px #0D5A8F;
+        }
+        
+        .bank-logo.selected::after {
+            content: '✓';
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: #0D5A8F;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+            z-index: 10;
+        }
+        
+        .btn-primary {
+            background-color: #0D5A8F;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #0a4870;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(13, 90, 143, 0.4);
+        }
+        
+        .btn-secondary {
+            transition: all 0.2s ease;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #f3f4f6;
+            transform: translateY(-2px);
+        }
+        
+        .form-input {
+            transition: all 0.2s ease;
+        }
+        
+        .form-input:focus {
+            border-color: #0D5A8F;
+            box-shadow: 0 0 0 3px rgba(13, 90, 143, 0.1);
+        }
+        
+        .info-card {
+            background: linear-gradient(135deg, #0D5A8F 0%, #1a7ab8 100%);
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div class="w-64 bg-white border-r border-gray-200 flex flex-col">
+            <!-- Logo -->
+            <div class="p-6 border-b border-gray-200">
+                <div class="flex items-center space-x-3">
+                    <img src="logo.png" alt="Logo" class="w-28 h-28 rounded-lg object-cover">
+                    
+                </div>
+            </div>
+            
+            <!-- Navigation -->
+            <nav class="flex-1 p-4 space-y-1">
+                <a href="#" class="sidebar-item flex items-center space-x-3 px-4 py-3 text-gray-700 rounded-lg">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                    </svg>
+                    <span>Home</span>
+                </a>
+                <a href="#" class="sidebar-item flex items-center space-x-3 px-4 py-3 text-gray-700 rounded-lg">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                    <span>Quản lý chứng từ</span>
+                </a>
+                <a href="#" class="sidebar-item flex items-center space-x-3 px-4 py-3 text-gray-700 rounded-lg">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                    </svg>
+                    <span>Hạch toán</span>
+                </a>
+                <a href="#" class="sidebar-item active flex items-center space-x-3 px-4 py-3 text-gray-700 rounded-lg">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <span>Tài khoản / Ngân hàng</span>
+                </a>
+                <a href="#" class="sidebar-item flex items-center space-x-3 px-4 py-3 text-gray-700 rounded-lg">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+                    </svg>
+                    <span>Tích hợp</span>
+                </a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Header -->
+            <header class="bg-white border-b border-gray-200 px-6 py-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex-1 max-w-xl">
+                        <div class="relative">
+                            <input type="text" placeholder="Search" class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <svg class="w-5 h-5 text-gray-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4 ml-6">
+                        <button class="icon-btn p-2 rounded-lg">
+                            <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                        </button>
+                        <button class="icon-btn p-2 rounded-lg relative">
+                            <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                            </svg>
+                            <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                        </button>
+                        <button class="icon-btn p-2 rounded-lg">
+                            <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                            </svg>
+                        </button>
+                        <div class="flex items-center space-x-3 pl-4 border-l border-gray-200">
+                            <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold">
+                                NA
+                            </div>
+                            <div>
+                                <div class="text-sm font-semibold">Nguyễn Văn A</div>
+                                <div class="text-xs text-gray-500">Kế toán viên</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <main class="flex-1 overflow-y-auto p-6">
+                <!-- Page Title -->
+                <div class="mb-6">
+                    <h1 class="text-2xl font-bold text-gray-800">Thêm Tài khoản / Ngân hàng</h1>
+                    <p class="text-sm text-gray-500 mt-1">Frame</p>
+                </div>
+
+                <!-- Form Content -->
+                <div class="bg-white rounded-lg shadow p-8">
+                    <!-- Bank Selection -->
+                    <div class="mb-8">
+                        <label class="block text-sm font-semibold text-gray-700 mb-4">Lựa chọn ngân hàng :</label>
+                        <div class="grid grid-cols-9 gap-4" id="bankGrid">
+                            <!-- Bank logos will be generated here -->
+                        </div>
+                    </div>
+
+                    <!-- Form Fields -->
+                    <div class="space-y-6 max-w-2xl">
+                        <!-- Account Number -->
+                        <div class="grid grid-cols-3 gap-4 items-center">
+                            <label class="text-sm font-medium text-gray-700">Số thẻ :</label>
+                            <div class="col-span-2">
+                                <input type="text" id="accountNumber" value="00012 4567 89" class="form-input w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none" readonly>
+                            </div>
+                        </div>
+
+                        <!-- Account Holder Name -->
+                        <div class="grid grid-cols-3 gap-4 items-center">
+                            <label class="text-sm font-medium text-gray-700">Họ và tên :</label>
+                            <div class="col-span-2">
+                                <input type="text" id="accountName" value="Nguyễn Văn A" class="form-input w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none" readonly>
+                            </div>
+                        </div>
+
+                        <!-- Effective Date -->
+                        <div class="grid grid-cols-3 gap-4 items-center">
+                            <label class="text-sm font-medium text-gray-700">Hiệu lực từ :</label>
+                            <div class="col-span-2">
+                                <input type="text" id="effectiveDate" value="04/17/23" class="form-input w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex justify-end space-x-4 mt-8 pt-6 border-t border-gray-200">
+                        <button class="btn-secondary px-6 py-2 border border-gray-300 rounded-lg font-medium text-gray-700">
+                            Hủy
+                        </button>
+                        <button class="btn-primary px-6 py-2 rounded-lg font-medium text-white">
+                            Thêm
+                        </button>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Vietnamese bank data
+        const vietnameseBanks = [
+            { name: 'Vietcombank', code: 'VCB' },
+            { name: 'BIDV', code: 'BIDV' },
+            { name: 'VietinBank', code: 'CTG' },
+            { name: 'Agribank', code: 'AGR' },
+            { name: 'Techcombank', code: 'TCB' },
+            { name: 'ACB', code: 'ACB' },
+            { name: 'MB Bank', code: 'MB' },
+            { name: 'SHB', code: 'SHB' },
+            { name: 'VPBank', code: 'VPB' },
+            { name: 'TPBank', code: 'TPB' },
+            { name: 'Sacombank', code: 'STB' },
+            { name: 'HDBank', code: 'HDB' },
+            { name: 'VIB', code: 'VIB' },
+            { name: 'OCB', code: 'OCB' },
+            { name: 'MSB', code: 'MSB' },
+            { name: 'SeABank', code: 'SEAB' },
+            { name: 'LienVietPostBank', code: 'LPB' },
+            { name: 'BaoViet Bank', code: 'BVB' },
+            { name: 'Eximbank', code: 'EIB' },
+            { name: 'SCB', code: 'SCB' },
+            { name: 'ABBank', code: 'ABB' },
+            { name: 'VietBank', code: 'VB' },
+            { name: 'NCB', code: 'NCB' },
+            { name: 'OceanBank', code: 'OJB' },
+            { name: 'PGBank', code: 'PGB' },
+            { name: 'DongA Bank', code: 'DAB' },
+            { name: 'GPBank', code: 'GPB' }
+        ];
+
+        // Generate bank logos
+        const bankGrid = document.getElementById('bankGrid');
+        let selectedBank = null;
+
+        vietnameseBanks.forEach((bank, index) => {
+            const bankDiv = document.createElement('div');
+            bankDiv.className = 'bank-logo';
+            bankDiv.innerHTML = `
+                <div class="bank-logo-inner w-20 h-20 rounded-full bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center overflow-hidden border-2 border-blue-200">
+                    <img src="https://picsum.photos/80/80?random=${index}" alt="${bank.name}" class="w-full h-full object-cover">
+                </div>
+            `;
+            
+            bankDiv.addEventListener('click', function() {
+                // Remove selection from all banks
+                document.querySelectorAll('.bank-logo').forEach(b => b.classList.remove('selected'));
+                
+                // Add selection to clicked bank
+                this.classList.add('selected');
+                selectedBank = bank;
+                
+                // Generate random account number
+                const accountNumber = generateAccountNumber();
+                document.getElementById('accountNumber').value = accountNumber;
+            });
+            
+            bankGrid.appendChild(bankDiv);
+        });
+
+        // Generate random account number
+        function generateAccountNumber() {
+            const num1 = Math.floor(10000 + Math.random() * 90000);
+            const num2 = Math.floor(1000 + Math.random() * 9000);
+            const num3 = Math.floor(10 + Math.random() * 90);
+            return `${num1} ${num2} ${num3}`;
+        }
+
+        // Sidebar navigation
+        document.querySelectorAll('.sidebar-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Cancel button
+        document.querySelector('.btn-secondary').addEventListener('click', function() {
+            if (confirm('Bạn có chắc muốn hủy? Mọi thay đổi sẽ không được lưu.')) {
+                window.history.back();
+            }
+        });
+
+        // Add button
+        document.querySelector('.btn-primary').addEventListener('click', function() {
+            if (!selectedBank) {
+                alert('Vui lòng chọn ngân hàng!');
+                return;
+            }
+            
+            const accountData = {
+                bank: selectedBank.name,
+                bankCode: selectedBank.code,
+                accountNumber: document.getElementById('accountNumber').value,
+                accountName: document.getElementById('accountName').value,
+                effectiveDate: document.getElementById('effectiveDate').value
+            };
+            
+            console.log('Adding account:', accountData);
+            alert('Thêm tài khoản thành công!');
+            
+            // Here you would normally send this data to your backend
+            // Then redirect back to the list page
+        });
+
+        // Set current date as default
+        const today = new Date();
+        const formattedDate = `${String(today.getMonth() + 1).padStart(2, '0')}/${String(today.getDate()).padStart(2, '0')}/${String(today.getFullYear()).slice(-2)}`;
+        document.getElementById('effectiveDate').value = formattedDate;
+    </script>
+</body>
+</html>
